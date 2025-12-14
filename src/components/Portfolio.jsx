@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
 import { glassTheme } from '../styles/theme';
 
@@ -7,6 +8,7 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 `;
 
 const SectionTitle = styled.h2`
@@ -14,7 +16,13 @@ const SectionTitle = styled.h2`
   font-weight: 300;
   margin-bottom: 40px;
   letter-spacing: 1px;
-  padding: 0 10%; 
+`;
+
+const CarouselWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const CarouselContainer = styled.div`
@@ -26,12 +34,39 @@ const CarouselContainer = styled.div`
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory; 
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
+  &::-webkit-scrollbar { display: none; }
   -ms-overflow-style: none;
   scrollbar-width: none;
+`;
+
+const NavButton = styled.button`
+  ${glassTheme.glass}
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; 
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  ${props => props.direction === 'left' ? 'left: 5%;' : 'right: 5%;'}
+
+  @media (max-width: 768px) {
+    display: none; 
+  }
 `;
 
 const Card = styled.div`
@@ -94,20 +129,48 @@ const projects = [
 ];
 
 const Portfolio = () => {
+  const carouselRef = useRef(null);
+
+  const scroll = (direction) => {
+    const { current } = carouselRef;
+    const scrollAmount = 380; 
+
+    if (direction === 'left') {
+      current.scrollLeft -= scrollAmount;
+    } else {
+      current.scrollLeft += scrollAmount;
+    }
+  };
+
   return (
     <Section>
       <SectionTitle>Projetos em Destaque</SectionTitle>
-      <CarouselContainer>
-        {projects.map((project) => (
-          <Card key={project.id}>
-            <ImagePlaceholder>Preview do Projeto</ImagePlaceholder>
-            <ProjectInfo>
-              <ProjectCategory>{project.category}</ProjectCategory>
-              <ProjectTitle>{project.title}</ProjectTitle>
-            </ProjectInfo>
-          </Card>
-        ))}
-      </CarouselContainer>
+      
+      <CarouselWrapper>
+        <NavButton direction="left" onClick={() => scroll('left')}>‹</NavButton>
+        
+        <CarouselContainer ref={carouselRef}>
+          {projects.map((project) => (
+            <Card key={project.id}>
+              <div style={{
+                height: '250px', 
+                background: 'rgba(255,255,255,0.05)', 
+                borderRadius: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                border: '1px dashed rgba(255,255,255,0.1)'
+              }}>
+                <span style={{opacity: 0.3}}>Preview {project.id}</span>
+              </div>
+              <h3 style={{fontWeight: '500', marginTop: '10px'}}>{project.title}</h3>
+              <p style={{opacity: 0.6, fontSize: '0.8rem', letterSpacing: '1px'}}>{project.category}</p>
+            </Card>
+          ))}
+        </CarouselContainer>
+
+        <NavButton direction="right" onClick={() => scroll('right')}>›</NavButton>
+      </CarouselWrapper>
     </Section>
   );
 };
