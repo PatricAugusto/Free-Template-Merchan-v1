@@ -5,6 +5,7 @@ import Portfolio from './components/Portfolio';
 import styled from 'styled-components';
 import Contact from './components/Contact';
 import Services from './components/Services';
+import Footer from './components/Footer';
 
 const AppContainer = styled.div`
   width: 100%;
@@ -20,6 +21,7 @@ function App() {
       <Services />
       <Portfolio />
       <Contact />
+      <Footer />
     </AppContainer>
   );
 }
