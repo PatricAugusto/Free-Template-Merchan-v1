@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 import { glassTheme } from '../styles/theme';
+import { motion } from 'framer-motion';
 
 const Section = styled.section`
   padding: 80px 0; 
@@ -143,7 +144,12 @@ const Portfolio = () => {
   };
 
   return (
-    <Section id="portfolio">
+    <Section id="portfolio" as={motion.section}
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
       <SectionTitle>Projetos em Destaque</SectionTitle>
       
       <CarouselWrapper>

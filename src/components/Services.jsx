@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+import { fadeInUp, staggerContainer } from './AnimatedSection';
 import styled from 'styled-components';
 import { glassTheme } from '../styles/theme';
 
@@ -98,18 +100,31 @@ const servicesData = [
 const Services = () => {
   return (
     <ServicesSection id="servicos">
-      <HeaderContainer>
-        <Title>Nossas <strong>Soluções</strong></Title>
-      </HeaderContainer>
-      <Grid>
-        {servicesData.map(service => (
-          <ServiceCard key={service.id}>
-            <IconWrapper>{service.icon}</IconWrapper>
-            <ServiceTitle>{service.title}</ServiceTitle>
-            <ServiceDescription>{service.desc}</ServiceDescription>
-          </ServiceCard>
-        ))}
-      </Grid>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }} 
+        variants={staggerContainer}
+        style={{ width: '100%' }}
+      >
+        <HeaderContainer as={motion.div} variants={fadeInUp}>
+          <Title>Nossas <strong>Soluções</strong></Title>
+        </HeaderContainer>
+
+        <Grid>
+          {servicesData.map(service => (
+            <ServiceCard 
+              key={service.id}
+              as={motion.div} 
+              variants={fadeInUp}
+            >
+              <IconWrapper>{service.icon}</IconWrapper>
+              <ServiceTitle>{service.title}</ServiceTitle>
+              <ServiceDescription>{service.desc}</ServiceDescription>
+            </ServiceCard>
+          ))}
+        </Grid>
+      </motion.div>
     </ServicesSection>
   );
 };
