@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Portfolio from './components/Portfolio';
 import styled from 'styled-components';
+import Contact from './components/Contact';
 
 const AppContainer = styled.div`
   width: 100%;
@@ -16,6 +17,7 @@ function App() {
       <Header />
       <Hero />
       <Portfolio />
+      <Contact />
     </AppContainer>
   );
 }
