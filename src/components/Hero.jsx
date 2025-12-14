@@ -73,7 +73,7 @@ const GlassSphere = styled.div`
 
 const Hero = () => {
   return (
-    <HeroSection>
+    <HeroSection id="inicio">
       <GlassSphere size="300px" top="-50px" left="10%" delay="0s" />
       <GlassSphere size="150px" top="60%" left="80%" delay="2s" />
       

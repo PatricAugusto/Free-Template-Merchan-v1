@@ -35,11 +35,13 @@ const NavList = styled.ul`
   gap: 30px;
 `;
 
-const NavLink = styled.li`
+const NavLink = styled.a`
   font-weight: 400;
   cursor: pointer;
   transition: 0.3s;
   font-size: 0.9rem;
+  color: inherit;
+  text-decoration: none;
 
   &:hover {
     opacity: 0.7;
@@ -50,12 +52,12 @@ const NavLink = styled.li`
 const Header = () => {
   return (
     <Navbar>
-      <Logo>AGÊNCIA.M</Logo>
+      <Logo onClick={() => window.scrollTo(0, 0)}>AGÊNCIA.M</Logo>
       <NavList>
-        <NavLink>Início</NavLink>
-        <NavLink>Serviços</NavLink>
-        <NavLink>Portfólio</NavLink>
-        <NavLink>Contato</NavLink>
+        <NavLink href="#inicio">Início</NavLink>
+        <NavLink href="#servicos">Serviços</NavLink>
+        <NavLink href="#portfolio">Portfólio</NavLink>
+        <NavLink href="#contato">Contato</NavLink>
       </NavList>
     </Navbar>
   );

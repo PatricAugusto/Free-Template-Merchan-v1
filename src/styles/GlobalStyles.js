@@ -1,6 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+
+  html {
+    scroll-behavior: smooth !important;;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -12,9 +17,11 @@ export const GlobalStyle = createGlobalStyle`
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     color: #fff;
-    display: flex;
     justify-content: center;
-    align-items: center;
     overflow-x: hidden;
+  }
+
+  section {
+  scroll-margin-top: 80px; 
   }
 `;

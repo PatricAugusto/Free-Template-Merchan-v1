@@ -143,7 +143,7 @@ const Portfolio = () => {
   };
 
   return (
-    <Section>
+    <Section id="portfolio">
       <SectionTitle>Projetos em Destaque</SectionTitle>
       
       <CarouselWrapper>
