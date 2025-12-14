@@ -1,5 +1,6 @@
 import { GlobalStyle } from './styles/GlobalStyles';
 import Header from './components/Header';
+import Hero from './components/Hero';
 import Portfolio from './components/Portfolio';
 import styled from 'styled-components';
 
@@ -13,8 +14,8 @@ function App() {
     <AppContainer>
       <GlobalStyle />
       <Header />
+      <Hero />
       <Portfolio />
-      {/* Outras seções virão aqui */}
     </AppContainer>
   );
 }
