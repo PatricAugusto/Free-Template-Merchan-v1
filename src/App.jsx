@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Portfolio from './components/Portfolio';
 import styled from 'styled-components';
 import Contact from './components/Contact';
+import Services from './components/Services';
 
 const AppContainer = styled.div`
   width: 100%;
@@ -16,6 +17,7 @@ function App() {
       <GlobalStyle />
       <Header />
       <Hero />
+      <Services />
       <Portfolio />
       <Contact />
     </AppContainer>
