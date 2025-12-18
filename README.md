@@ -1,16 +1,61 @@
-# React + Vite
+# 🏺 Agência.M - Merchandising & Design SPA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma Single Page Application (SPA) moderna, minimalista e sofisticada, desenvolvida para uma agência de merchandising. O projeto utiliza o conceito de **Glassmorphism** (Efeito Vidro) para criar uma interface profunda e futurista.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O projeto foi construído com o ecossistema mais moderno do React:
 
-## React Compiler
+* **React (Vite):** Ambiente de desenvolvimento ultra-rápido.
+* **Styled Components:** Estilização baseada em CSS-in-JS para componentes dinâmicos e isolados.
+* **Framer Motion:** Biblioteca robusta para animações de entrada e transições suaves.
+* **CSS Moderno:** Uso de Grid Layout, Flexbox e `clamp()` para responsividade total.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Funcionalidades Principais
 
-## Expanding the ESLint configuration
+* **Design Glassmorphism:** Temas de transparência e desfoque (`backdrop-filter`) aplicados em toda a interface.
+* **Carrossel de Portfólio Infinito:** Galeria automática de projetos que roda continuamente via animações CSS.
+* **Seções Animadas:** Efeitos de fade-in e escalonamento disparados conforme o scroll do usuário (Viewport Trigger).
+* **Navegação Inteligente:** Header fixo com Scroll Suave (Smooth Scroll) e ajuste de offset para âncoras.
+* **Responsividade Total:** Layout adaptável para dispositivos móveis, tablets e desktop.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Como Executar o Projeto
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/seu-usuario/agencia-m.git](https://github.com/seu-usuario/agencia-m.git)
+    ```
+
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+
+3.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Para gerar o build de produção:**
+    ```bash
+    npm run build
+    ```
+
+## 📂 Estrutura de Pastas
+
+```text
+src/
+├── components/         # Componentes reutilizáveis (Hero, Portfolio, etc.)
+├── styles/             # GlobalStyles e definições de tema Glass
+├── assets/             # Imagens e recursos visuais
+└── App.jsx             # Orquestrador das seções da SPA
+```
+
+### 🎨 Conceito Visual
+O projeto foca na experiência do usuário através do minimalismo:
+
+- Tipografia: Contraste entre pesos leves (200) e extra-negritos (800).
+
+- Profundidade: Uso de esferas de vidro flutuantes no fundo da seção Hero.
+
+- Interatividade: Botões e cards que reagem ao toque/hover com brilhos e elevações suaves.
