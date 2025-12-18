@@ -1,182 +1,81 @@
-import { useRef } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { glassTheme } from '../styles/theme';
-import { motion } from 'framer-motion';
+
+const scroll = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-350px * 5 - 30px * 5)); } 
+`;
 
 const Section = styled.section`
-  padding: 80px 0; 
+  padding: 80px 0;
+  overflow: hidden; 
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
 `;
 
-const SectionTitle = styled.h2`
-  font-size: 2rem;
-  font-weight: 300;
-  margin-bottom: 40px;
-  letter-spacing: 1px;
-`;
-
-const CarouselWrapper = styled.div`
-  position: relative;
-  width: 100%;
+const CarouselTrack = styled.div`
   display: flex;
-  align-items: center;
+  gap: 30px;
+  width: max-content; 
+  animation: ${scroll} 30s linear infinite; 
+
+  &:hover {
+    animation-play-state: paused; 
+  }
 `;
 
 const CarouselContainer = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 20px;
   width: 100%;
   overflow-x: auto;
-  padding: 20px 10%; 
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory; 
-
+  padding: 20px 0;
+  justify-content: flex-start; 
+  
   &::-webkit-scrollbar { display: none; }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-`;
-
-const NavButton = styled.button`
-  ${glassTheme.glass}
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%; 
-  color: white;
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-50%) scale(1.1);
-  }
-
-  ${props => props.direction === 'left' ? 'left: 5%;' : 'right: 5%;'}
-
-  @media (max-width: 768px) {
-    display: none; 
-  }
 `;
 
 const Card = styled.div`
   ${glassTheme.glass}
-  min-width: 350px; 
-  padding: 25px;
-  transition: transform 0.4s ease;
-  cursor: pointer;
-  scroll-snap-align: center; 
+  min-width: 350px;
+  height: 400px;
+  padding: 20px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-
-  &:hover {
-    transform: scale(1.02);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-  }
-
-  @media (max-width: 480px) {
-    min-width: 280px;
-  }
 `;
 
-const ImagePlaceholder = styled.div`
+const ImageBox = styled.div`
   width: 100%;
   height: 250px;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.3);
-  border: 1px dashed rgba(255, 255, 255, 0.1);
-`;
-
-const ProjectInfo = styled.div`
-  text-align: left;
-`;
-
-const ProjectTitle = styled.h3`
-  font-size: 1.3rem;
-  font-weight: 500;
-  margin-bottom: 5px;
-`;
-
-const ProjectCategory = styled.span`
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #a0aec0;
+  border-radius: 15px;
+  margin-bottom: 15px;
 `;
 
 const projects = [
-  { id: 1, title: "Campanha de Verão", category: "Varejo" },
-  { id: 2, title: "Lançamento Tech", category: "Eventos" },
-  { id: 3, title: "Visual Merchandising", category: "Moda" },
-  { id: 4, title: "Branding Ativacional", category: "Corporativo" },
-  { id: 5, title: "Exposição Galeria", category: "Arte" },
+  { id: 1, title: "Marca Gamma", cat: "Branding" },
+  { id: 2, title: "Projeto Alfa", cat: "Varejo" },
+  { id: 3, title: "Evento Beta", cat: "Eventos" },
+  { id: 4, title: "Design High", cat: "Digital" },
+  { id: 5, title: "Agência M", cat: "Merchandising" },
 ];
 
 const Portfolio = () => {
-  const carouselRef = useRef(null);
-
-  const scroll = (direction) => {
-    const { current } = carouselRef;
-    const scrollAmount = 380; 
-
-    if (direction === 'left') {
-      current.scrollLeft -= scrollAmount;
-    } else {
-      current.scrollLeft += scrollAmount;
-    }
-  };
+  // Duplicamos a lista para o loop parecer infinito
+  const doubledProjects = [...projects, ...projects];
 
   return (
-    <Section id="portfolio" as={motion.section}
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-      <SectionTitle>Projetos em Destaque</SectionTitle>
-      
-      <CarouselWrapper>
-        <NavButton direction="left" onClick={() => scroll('left')}>‹</NavButton>
-        
-        <CarouselContainer ref={carouselRef}>
-          {projects.map((project) => (
-            <Card key={project.id}>
-              <div style={{
-                height: '250px', 
-                background: 'rgba(255,255,255,0.05)', 
-                borderRadius: '10px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                border: '1px dashed rgba(255,255,255,0.1)'
-              }}>
-                <span style={{opacity: 0.3}}>Preview {project.id}</span>
-              </div>
-              <h3 style={{fontWeight: '500', marginTop: '10px'}}>{project.title}</h3>
-              <p style={{opacity: 0.6, fontSize: '0.8rem', letterSpacing: '1px'}}>{project.category}</p>
-            </Card>
-          ))}
-        </CarouselContainer>
-
-        <NavButton direction="right" onClick={() => scroll('right')}>›</NavButton>
-      </CarouselWrapper>
+    <Section id="portfolio">
+      <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>Portfólio</h2>
+      <CarouselTrack>
+        {doubledProjects.map((item, index) => (
+          <Card key={index}>
+            <ImageBox />
+            <h3>{item.title}</h3>
+            <p style={{ opacity: 0.6 }}>{item.cat}</p>
+          </Card>
+        ))}
+      </CarouselTrack>
     </Section>
   );
 };

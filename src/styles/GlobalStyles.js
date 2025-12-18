@@ -1,11 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-
-  html {
-    scroll-behavior: smooth !important;;
-  }
-
   * {
     margin: 0;
     padding: 0;
@@ -13,15 +8,32 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Inter', sans-serif;
   }
 
+  html, body {
+    width: 100%;
+    overflow-x: hidden; 
+    scroll-behavior: smooth !important;
+  }
+
   body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
     min-height: 100vh;
     color: #fff;
-    justify-content: center;
-    overflow-x: hidden;
+    display: block;
   }
 
   section {
-  scroll-margin-top: 80px; 
+    width: 100%;
+    position: relative;
+    padding: 80px 5%; 
+
+    @media (min-width: 768px) {
+      padding: 100px 10%; 
+    }
+  }
+
+  #root {
+    width: 100%;
+    overflow-x: hidden;
   }
 `;

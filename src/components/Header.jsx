@@ -8,59 +8,54 @@ const Navbar = styled.nav`
   width: 100%;
   height: 80px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
   align-items: center;
-  padding: 0 10%;
+  padding: 0 5%;
   z-index: 1000;
-  
   ${glassTheme.glass}
-  
-  border-radius: 0; 
-  border-top: none;
-  border-left: none;
-  border-right: none;
-`;
+  border-radius: 0;
 
-const Logo = styled.div`
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-`;
-
-const NavList = styled.ul`
-  display: flex;
-  list-style: none;
-  gap: 30px;
-`;
-
-const NavLink = styled.a`
-  font-weight: 400;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 0.9rem;
-  color: inherit;
-  text-decoration: none;
-
-  &:hover {
-    opacity: 0.7;
-    transform: translateY(-2px);
+  @media (min-width: 768px) {
+    padding: 0 10%;
   }
 `;
 
-const Header = () => {
-  return (
-    <Navbar>
-      <Logo onClick={() => window.scrollTo(0, 0)}>AGÊNCIA.M</Logo>
-      <NavList>
-        <NavLink href="#inicio">Início</NavLink>
-        <NavLink href="#servicos">Serviços</NavLink>
-        <NavLink href="#portfolio">Portfólio</NavLink>
-        <NavLink href="#contato">Contato</NavLink>
-      </NavList>
-    </Navbar>
-  );
-};
+const Logo = styled.div`
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+`;
+
+const NavList = styled.div`
+  display: flex;
+  gap: 20px;
+  
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
+    gap: 10px;
+  }
+`;
+
+const NavLink = styled.a`
+  font-size: 0.85rem;
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: 0.3s;
+
+  &:hover { opacity: 1; }
+`;
+
+const Header = () => (
+  <Navbar>
+    <Logo onClick={() => window.scrollTo(0,0)}>AGÊNCIA.M</Logo>
+    <NavList>
+      <NavLink href="#servicos">Serviços</NavLink>
+      <NavLink href="#portfolio">Portfólio</NavLink>
+      <NavLink href="#contato">Contato</NavLink>
+    </NavList>
+  </Navbar>
+);
 
 export default Header;

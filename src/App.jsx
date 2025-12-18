@@ -1,20 +1,20 @@
 import { GlobalStyle } from './styles/GlobalStyles';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Portfolio from './components/Portfolio';
-import styled from 'styled-components';
-import Contact from './components/Contact';
 import Services from './components/Services';
+import Portfolio from './components/Portfolio';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
+import styled from 'styled-components';
 
-const AppContainer = styled.div`
+const MainWrapper = styled.div`
   width: 100%;
-  padding-top: 80px; 
+  display: block; /* Garante empilhamento vertical puro */
 `;
 
 function App() {
   return (
-    <AppContainer>
+    <MainWrapper>
       <GlobalStyle />
       <Header />
       <Hero />
@@ -22,7 +22,7 @@ function App() {
       <Portfolio />
       <Contact />
       <Footer />
-    </AppContainer>
+    </MainWrapper>
   );
 }
 
